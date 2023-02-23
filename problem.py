@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn.model_selection import KFold
 
 problem_title = "Dating App"
 
@@ -10,11 +11,11 @@ problem_title = "Dating App"
 ###############
 
 
-def read_data():
+def _read_data(path):
     """Read the datasets and return it as a pandas DataFrame"""
 
-    df2 = pd.read_csv(os.path.join("data", "lovoo_v3_users_api-results.csv"))
-    df3 = pd.read_csv(os.path.join("data", "lovoo_v3_users_instances.csv"))
+    df2 = pd.read_csv(os.path.join(path, "data", "lovoo_v3_users_api-results.csv"))
+    df3 = pd.read_csv(os.path.join(path, "data", "lovoo_v3_users_instances.csv"))
 
     df3 = df3[["connectedToFacebook", "userId", "countDetails"]]
 
@@ -44,24 +45,26 @@ def read_data():
     return X, y
 
 
-def get_data(test_size=0.2, random_state=42):
+def get_data(path, test_size=0.2, random_state=42):
     """Return the data as a pandas DataFrame"""
-    X, y = read_data()
+    X, y = _read_data(path)
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=test_size, random_state=random_state
     )
     return X_train, X_test, y_train["counts_kisses"], y_test["counts_kisses"]
 
 
-def get_train_data():
+def get_train_data(path="."):
     """Return the training data as a pandas DataFrame"""
-    X_train, _, y_train, _ = get_data()
+    X_train, _, y_train, _ = get_data(path)
+    X_train = preprocess_data(X_train)
     return X_train, y_train
 
 
-def get_test_data():
+def get_test_data(path="."):
     """Return the test data as a pandas DataFrame"""
-    _, X_test, _, y_test = get_data()
+    _, X_test, _, y_test = get_data(path)
+    X_test = preprocess_data(X_test)
     return X_test, y_test
 
 
@@ -130,3 +133,44 @@ def preprocess_data(df):
     df_copy = transform_dates(df_copy)
     df_copy = transform_description(df_copy)
     return df_copy
+
+
+###########################
+# Cross validation scheme #
+###########################
+
+
+def get_cv(X, y):
+    """Return a cross validation scheme"""
+
+    cv = KFold(n_splits=5, shuffle=True, random_state=42)
+    return cv.split(X, y)
+
+
+###############
+# Score types #
+###############
+import rampwf as rw
+
+score_types = [
+    rw.score_types.RMSE(name="rmse"),
+    rw.score_types.RelativeRMSE(name="relative_rmse"),
+    rw.score_types.MARE(name="mare"),
+]
+
+
+############
+# Workflow #
+############
+from rampwf.workflows.sklearn_pipeline import SKLearnPipeline
+from rampwf.workflows.sklearn_pipeline import Estimator
+import numpy as np
+
+workflow = Estimator()
+
+
+####################
+# Predictions Type #
+####################
+
+Predictions = rw.prediction_types.make_regression()
