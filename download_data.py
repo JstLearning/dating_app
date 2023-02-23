@@ -11,6 +11,7 @@ from osfclient.api import OSF
 from osfclient.exceptions import UnauthorizedException
 import numpy as np
 from PIL import Image
+import os
 
 LOCAL_DATA = Path(__file__).parent / "data"
 
@@ -134,6 +135,17 @@ def download_from_osf(private, username=None, password=None):
         print("Checking the data...", end="", flush=True)
         checksum_data(private, raise_error=True)
         print("Ok.")
+        
+        # We remove put our files in our data folder and remove our public folder 
+        folder = "private" if private else "public"
+        p = (LOCAL_DATA / folder).glob('**/*')
+        files = [x for x in p if x.is_file()]
+        for f in files:
+            parent_dir = f.parents[1]
+            f.rename(parent_dir / f.name)
+        
+        (LOCAL_DATA / folder).rmdir()
+
     else:
         print(
             f"{LOCAL_DATA} directory is not empty. Please empty it or select"
