@@ -13,8 +13,8 @@ problem_title = "Dating App"
 def read_data():
     """Read the datasets and return it as a pandas DataFrame"""
 
-    df2 = pd.read_csv(os.path.join("data", "public", "lovoo_v3_users_api-results.csv"))
-    df3 = pd.read_csv(os.path.join("data", "public", "lovoo_v3_users_instances.csv"))
+    df2 = pd.read_csv(os.path.join("data", "lovoo_v3_users_api-results.csv"))
+    df3 = pd.read_csv(os.path.join("data", "lovoo_v3_users_instances.csv"))
 
     df3 = df3[["connectedToFacebook", "userId", "countDetails"]]
 
