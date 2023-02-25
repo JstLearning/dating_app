@@ -24,10 +24,10 @@ RAMP_FOLDER_CONFIGURATION = {
         archive_name="public.tar.gz",
         # to findout checksum use function
         # defined below: hash_folder(folder_path)
-        data_checksum=1022307218,
+        data_checksum=1261830421,
     ),
     "private": dict(
-        code="r8w9y", archive_name="private.tar.gz", data_checksum=1022307218
+        code="r8w9y", archive_name="private.tar.gz", data_checksum=1261830421
     ),
 }
 

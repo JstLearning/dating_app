@@ -16,11 +16,14 @@ def _read_data(path):
 
     df2 = pd.read_csv(os.path.join(path, "data", "lovoo_v3_users_api-results.csv"))
     df3 = pd.read_csv(os.path.join(path, "data", "lovoo_v3_users_instances.csv"))
+    df4 = pd.read_csv(os.path.join(path, "data", "cities_lat_long.csv"))
 
-    df3 = df3[["connectedToFacebook", "userId"]]
+    df3 = df3[["connectedToFacebook", "userId", "locationCity"]]
 
     df = pd.merge(df2, df3, on="userId", how="left")
     df = df.drop_duplicates(subset="userId", keep=False)
+
+    df = pd.merge(df, df4, left_on="locationCity", right_on="City", how="left")
 
     df.index = df["userId"]
     # Drop unuseful columns
@@ -36,6 +39,7 @@ def _read_data(path):
             "freetext",
             "pictureId",
             "isSystemProfile",
+            "City"
         ],
         axis=1,
     )

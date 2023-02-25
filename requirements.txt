@@ -1,3 +1,9 @@
 pandas>=0.23
 scikit-learn>=0.20
 ramp-workflow
+folium
+shapely
+numpy
+matplotlib
+seaborn
+scipy
