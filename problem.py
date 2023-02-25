@@ -17,7 +17,7 @@ def _read_data(path):
     df2 = pd.read_csv(os.path.join(path, "data", "lovoo_v3_users_api-results.csv"))
     df3 = pd.read_csv(os.path.join(path, "data", "lovoo_v3_users_instances.csv"))
 
-    df3 = df3[["connectedToFacebook", "userId", "countDetails"]]
+    df3 = df3[["connectedToFacebook", "userId"]]
 
     df = pd.merge(df2, df3, on="userId", how="left")
     df = df.drop_duplicates(subset="userId", keep=False)
