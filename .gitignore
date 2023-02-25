@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# The dataset downloaded with the download_data.py
+data/
+
 # Distribution / packaging
 .Python
 build/
