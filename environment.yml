@@ -1,0 +1,16 @@
+name: ramp-dating-app
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - numpy
+  - pandas>=0.23
+  - scikit-learn>=0.20
+  - matplotlib
+  - seaborn
+  - jupyter
+  - shapely
+  - folium
+  - scipy
+  - pip:
+      - ramp-workflow

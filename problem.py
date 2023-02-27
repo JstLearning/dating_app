@@ -39,7 +39,7 @@ def _read_data(path):
             "freetext",
             "pictureId",
             "isSystemProfile",
-            "City"
+            "City",
         ],
         axis=1,
     )
@@ -158,15 +158,13 @@ import rampwf as rw
 
 score_types = [
     rw.score_types.RMSE(name="rmse"),
-    rw.score_types.RelativeRMSE(name="relative_rmse"),
-    rw.score_types.MARE(name="mare"),
+    rw.score_types.NormalizedRMSE(name="normalized_rmse"),
 ]
 
 
 ############
 # Workflow #
 ############
-from rampwf.workflows.sklearn_pipeline import SKLearnPipeline
 from rampwf.workflows.sklearn_pipeline import Estimator
 import numpy as np
 

@@ -2,8 +2,6 @@
 
 _Authors: Charlotte Cournon, Solène Debuysère, Godefroy Du Chalard, Yanis Lalou, Agathe Minaro, Luka Trailovic_
 
-<span style="color:red"> **Ecrire une introduction**</span>
-
 #### Set up
 
 Open a terminal and
@@ -17,7 +15,13 @@ $ pip install ramp-workflow
 2. install the required libraries for this challenge from the root of the starting kit
 
 ```
-$ pip install -r requirements.txt
+$ pip install -U -r requirements.txt
+```
+
+If you are using conda, we provide an environment.yml file, so you can do
+
+```
+$ conda env create -f environment.yml
 ```
 
 3. Follow the ramp-kits instructions from the [wiki](https://github.com/paris-saclay-cds/ramp-workflow/wiki/Getting-started-with-a-ramp-kit)
