@@ -44,7 +44,7 @@ def _read_data(path):
         axis=1,
     )
 
-    X = df.drop(["counts_kisses", "counts_profileVisits"], axis=1)
+    X = df.drop(["counts_kisses"], axis=1)
     y = df[["counts_kisses"]]
     return X, y
 
@@ -166,7 +166,6 @@ score_types = [
 # Workflow #
 ############
 from rampwf.workflows.sklearn_pipeline import Estimator
-import numpy as np
 
 workflow = Estimator()
 

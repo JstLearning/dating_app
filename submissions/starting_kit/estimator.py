@@ -29,7 +29,6 @@ class FeatureExtractor(BaseEstimator):
 
 
 def get_estimator():
-
     feature_extractor = FeatureExtractor()
 
     reg = Regressor()
