@@ -24,6 +24,7 @@ class FeatureExtractor(BaseEstimator):
         return self
 
     def transform(self, X):
+        X = X.drop(columns=["locationCity"])
         return X.merge(self.nb_users_by_age, on="age", how="left")
 
 
