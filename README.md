@@ -2,6 +2,13 @@
 
 _Authors: Charlotte Cournon, Solène Debuysère, Godefroy Du Chalard, Yanis Lalou, Agathe Minaro, Luka Trailovic_
 
+Our society is evolving, becoming more complex, more intensive and, above all, more numeric. In today’s digital era, social media platforms have become an omnipresent part in our daily life. Sharing, liking, commenting and posting are the basic actions to show our interest in other people's passions or to simply share our own.
+Very quickly, new types of social networks have emerged, for example to create professional networks, to talk anonymously or to date. In fact, these dating applications are used on a much larger scale than one might think, and therefore bring many challenges with their use.
+
+As dating apps such as Tinder or Lovoo grew in popularity, individuals sought to optimize their profiles to improve their scores of receiving more matches and potential connections.
+
+The objective of this RAMP challenge is to investigate these questions by collecting user profile data and metrics in order to better understand user behaviours and relationships on Lovoo.
+
 #### Set up
 
 Open a terminal and
