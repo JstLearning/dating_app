@@ -36,6 +36,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .m { color: var(--jp-mirror-editor-number-color) } /* Literal.Number */
 .highlight .s { color: var(--jp-mirror-editor-string-color) } /* Literal.String */
 .highlight .ow { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator.Word */
+.highlight .pm { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation.Marker */
 .highlight .w { color: var(--jp-mirror-editor-variable-color) } /* Text.Whitespace */
 .highlight .mb { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Bin */
 .highlight .mf { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Float */
@@ -14464,10 +14465,6 @@ a.anchor-link {
   display: none;
 }
 
-.highlight  {
-  margin: 0.4em;
-}
-
 /* Input area styling */
 .jp-InputArea {
   overflow: hidden;
@@ -14477,9 +14474,26 @@ a.anchor-link {
   overflow: hidden;
 }
 
-.CodeMirror pre {
+.CodeMirror.cm-s-jupyter .highlight pre {
+/* weird, but --jp-code-padding defined to be 5px but 4px horizontal padding is hardcoded for pre.CodeMirror-line */
+  padding: var(--jp-code-padding) 4px;
   margin: 0;
-  padding: 0;
+
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+
+}
+
+.jp-OutputArea-output pre {
+  line-height: inherit;
+  font-family: inherit;
+}
+
+.jp-RenderedText pre {
+  color: var(--jp-content-font-color1);
+  font-size: var(--jp-code-font-size);
 }
 
 /* Using table instead of flexbox so that we can use break-inside property */
@@ -14580,19 +14594,14 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <div style="text-align:center;">
-
-
   <a href="https://www.ip-paris.fr">
     <img border="0" alt="IPP Logo" src="logo_ipp.png" style="display:inline-block; margin-left:auto; margin-right:auto; height:130px; margin-right:50px">
   </a>
-
-
   <a href="https://www.lovoo.com">
     <img border="0" alt="Lovoo Logo" src="logo_lovoo.png" style="display:inline-block; margin-left:auto; margin-right:auto;height:130px;">
   </a>
-
-
 </div>
+
 </div>
 </div>
 </div>
@@ -14617,40 +14626,40 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><strong>Table of contents</strong><a id='toc0_'></a></p>
 <ul>
-<li><a href="#toc1_">Ramp on predicting likes in Dating Apps</a>    <ul>
-<li><a href="#toc1_1_">Introduction</a>    </li>
-<li><a href="#toc1_2_">Getting started with the RAMP Starting Kit</a>    <ul>
-<li><a href="#toc1_2_1_">Software prerequisites</a>    </li>
-<li><a href="#toc1_2_2_">Getting the data</a>    </li>
+<li><a href="#toc1_">Ramp on predicting likes in Dating Apps</a><ul>
+<li><a href="#toc1_1_">Introduction</a></li>
+<li><a href="#toc1_2_">Getting started with the RAMP Starting Kit</a><ul>
+<li><a href="#toc1_2_1_">Software prerequisites</a></li>
+<li><a href="#toc1_2_2_">Getting the data</a></li>
 </ul>
 </li>
-<li><a href="#toc1_3_">The Data</a>    <ul>
-<li><a href="#toc1_3_1_">Get the data and Preprocessing it</a>    <ul>
-<li><a href="#toc1_3_1_1_">Description of each column</a>    </li>
-<li><a href="#toc1_3_1_2_">Explication of the preprocessing of each column</a>    </li>
+<li><a href="#toc1_3_">The Data</a><ul>
+<li><a href="#toc1_3_1_">Get the data and Preprocessing it</a><ul>
+<li><a href="#toc1_3_1_1_">Description of each column</a></li>
+<li><a href="#toc1_3_1_2_">Explication of the preprocessing of each column</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#toc1_4_">Analysis of the data</a>    <ul>
-<li><a href="#toc1_4_1_">Analysis of the quantitative features</a>    </li>
-<li><a href="#toc1_4_2_">Statistical analysis</a>    </li>
-<li><a href="#toc1_4_3_">Geographic visualization</a>    </li>
-<li><a href="#toc1_4_4_">Analysis of features with the target</a>    <ul>
-<li><a href="#toc1_4_4_1_">Histogram of the number of likes</a>    </li>
-<li><a href="#toc1_4_4_2_">Verified status &amp; VIP subscription</a>    </li>
+<li><a href="#toc1_4_">Analysis of the data</a><ul>
+<li><a href="#toc1_4_1_">Analysis of the quantitative features</a></li>
+<li><a href="#toc1_4_2_">Statistical analysis</a></li>
+<li><a href="#toc1_4_3_">Geographic visualization</a></li>
+<li><a href="#toc1_4_4_">Analysis of features with the target</a><ul>
+<li><a href="#toc1_4_4_1_">Histogram of the number of likes</a></li>
+<li><a href="#toc1_4_4_2_">Verified status &amp; VIP subscription</a></li>
 </ul>
 </li>
-<li><a href="#toc1_4_5_">Correlation study</a>    </li>
+<li><a href="#toc1_4_5_">Correlation study</a></li>
 </ul>
 </li>
-<li><a href="#toc1_5_">Workflow</a>    <ul>
-<li><a href="#toc1_5_1_">The model to submit</a>    </li>
-<li><a href="#toc1_5_2_">Evaluation</a>    </li>
-<li><a href="#toc1_5_3_">Evaluation with Cross-Validation</a>    </li>
+<li><a href="#toc1_5_">Workflow</a><ul>
+<li><a href="#toc1_5_1_">The model to submit</a></li>
+<li><a href="#toc1_5_2_">Evaluation</a></li>
+<li><a href="#toc1_5_3_">Evaluation with Cross-Validation</a></li>
 </ul>
 </li>
-<li><a href="#toc1_6_">Submit on Ramp Studio</a>    </li>
+<li><a href="#toc1_6_">Submit on Ramp Studio</a></li>
 </ul>
 </li>
 </ul>
@@ -14662,6 +14671,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
     maxLevel=6
     /vscode-jupyter-toc-config -->
 <!-- THIS CELL WILL BE REPLACED ON TOC UPDATE. DO NOT WRITE YOUR TEXT IN THIS CELL -->
+
 </div>
 </div>
 </div>
@@ -14732,8 +14742,8 @@ It proposes designing the best algorithm to <strong>predict the number of likes 
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>This starting kit requires several packages, to install them, you can directly run from the root of the starting kit:</p>
-
-<pre><code>pip install -r requirements.txt</code></pre>
+<pre><code>pip install -r requirements.txt
+</code></pre>
 
 </div>
 </div>
@@ -14746,8 +14756,8 @@ It proposes designing the best algorithm to <strong>predict the number of likes 
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="Getting-the-data"><a id="toc1_2_2_" /><a href="#toc0_">Getting the data</a><a class="anchor-link" href="#Getting-the-data">&#182;</a></h3><p>To download the public data, you can run from the root of the starting kit:</p>
-
-<pre><code>python download_data.py</code></pre>
+<pre><code>python download_data.py
+</code></pre>
 
 </div>
 </div>
@@ -14839,9 +14849,7 @@ It proposes designing the best algorithm to <strong>predict the number of likes 
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
 
@@ -15068,9 +15076,7 @@ It proposes designing the best algorithm to <strong>predict the number of likes 
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
 
@@ -15124,23 +15130,23 @@ It proposes designing the best algorithm to <strong>predict the number of likes 
 <li><em>flirtInterests_friends</em> : Whether the user indicated being open to making friends</li>
 <li><em>flirtInterests_date</em> : Whether the user indicated being open to dating people</li>
 <li><em>country</em> : user's country</li>
-<li><em>isFlirtstar</em> : Whether the user account that fetched the dataset "liked" this user's profile. Playing around with "liking" profiles while fetching a dataset could help better understand the site's recommendation algorithm</li>
+<li><em>isFlirtstar</em> : Whether the user account that fetched the dataset &quot;liked&quot; this user's profile. Playing around with &quot;liking&quot; profiles while fetching a dataset could help better understand the site's recommendation algorithm</li>
 <li><em>isHighlighted</em> : Whether the user's profile is currently highlighted (at fetch time). A user can use in-app currency to have one's profile temporarily highlighted and get more impressions/matches</li>
 <li><em>isInfluencer</em> : whether this is an influencer account</li>
 <li><em>isMobile</em> : whether the user uses the mobile app</li>
 <li><em>isNew</em>: the user account is recently created</li>
-<li><em>isOnline</em> : whether the user was connected at time of fetch </li>
+<li><em>isOnline</em> : whether the user was connected at time of fetch</li>
 <li><em>isVip</em> : 1 if the user is VIP. It was possible to buy a VIP status with real money. This status came with benefits</li>
 <li><em>lang_count</em> : Number of languages the user knows</li>
 <li><em>lang_fr</em> : whether the user knows french</li>
-<li><em>lang_en</em> : whether the user knows english </li>
+<li><em>lang_en</em> : whether the user knows english</li>
 <li><em>lang_de</em> : whether the user knows german</li>
 <li><em>lang_it</em> : whether the user knows italian</li>
 <li><em>lang_es</em> : whether the user knows spanish</li>
 <li><em>lang_pt</em> : whether the user knows portuguese</li>
 <li><em>verified</em> : whether the user's account was verified through one of the methods (Facebook, phone number)</li>
 <li><em>shareProfileEnabled</em> : user allows her profile to be shared</li>
-<li><em>lastOnlineDate</em> : last login time of the user. One login session can last several hours </li>
+<li><em>lastOnlineDate</em> : last login time of the user. One login session can last several hours</li>
 <li><em>lastOnlineTime</em> : last login time the user was connected, as timestamp.</li>
 <li><em>birthd</em> : whether the user's birthday is today (time of fetch)</li>
 <li><em>connectedToFacebook</em> : 0 or 1 (connected to facebook or not)</li>
@@ -15200,9 +15206,7 @@ Another dataset giving the latitude and longitude position of cities has also be
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15278,9 +15282,9 @@ memory usage: 876.2+ KB
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>We have below five histograms that represent the distribution of five variables in the dataset:</p>
 <ul>
-<li>The first histogram displays the age of the different users of the platform. Most people are between 18 and 25 years old. On average they are 22 years old. The users of the platform are relatively young. </li>
-<li>The second histogram shows the amount of information they have put on their profile. We see that a very large part of the users have not put anything on their profile. Are they attractive despite a lack of information about them ? The median is at 0.6, so they have completed their profile at 60%.  </li>
-<li>The third histogram shows the number of photos on their profiles. On average, users post five photos of themselves. </li>
+<li>The first histogram displays the age of the different users of the platform. Most people are between 18 and 25 years old. On average they are 22 years old. The users of the platform are relatively young.</li>
+<li>The second histogram shows the amount of information they have put on their profile. We see that a very large part of the users have not put anything on their profile. Are they attractive despite a lack of information about them ? The median is at 0.6, so they have completed their profile at 60%.</li>
+<li>The third histogram shows the number of photos on their profiles. On average, users post five photos of themselves.</li>
 <li>The fourth graph shows the number of languages spoken by the users, most of the users speak only their mother tongue. Nevertheless, the number of languages spoken is complicated to evaluate from their profiles.</li>
 <li>The fifth graph shows the number of followers for each account.</li>
 </ul>
@@ -15296,7 +15300,7 @@ memory usage: 876.2+ KB
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">quant_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'age'</span><span class="p">,</span> <span class="s1">'counts_details'</span><span class="p">,</span> <span class="s1">'counts_pictures'</span><span class="p">,</span><span class="s1">'counts_fans'</span><span class="p">,</span> <span class="s1">'lang_count'</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">quant_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;counts_details&#39;</span><span class="p">,</span> <span class="s1">&#39;counts_pictures&#39;</span><span class="p">,</span><span class="s1">&#39;counts_fans&#39;</span><span class="p">,</span> <span class="s1">&#39;lang_count&#39;</span><span class="p">]</span>
 <span class="n">data_train</span><span class="p">[</span><span class="n">quant_features</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 
@@ -15311,9 +15315,7 @@ memory usage: 876.2+ KB
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
 
@@ -15432,8 +15434,8 @@ memory usage: 876.2+ KB
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">quant_features</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data_train</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">stat</span><span class="o">=</span><span class="s2">"density"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"Tab:blue"</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Distribution of the feature </span><span class="si">{}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">in the training dataset"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">col</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data_train</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">stat</span><span class="o">=</span><span class="s2">&quot;density&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;Tab:blue&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribution of the feature </span><span class="si">{}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">in the training dataset&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">col</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
                     <span class="n">bottom</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
                     <span class="n">right</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
@@ -15453,9 +15455,7 @@ memory usage: 876.2+ KB
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15517,15 +15517,15 @@ Also, we can see that age has a very little influence on the expectations of eac
 
 <span class="c1"># Define the function to calculate the statistics</span>
 <span class="k">def</span> <span class="nf">calculate_statistics</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
-    <span class="n">nbUsers</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'age'</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
-    <span class="n">wantChats</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'flirtInterests_chat'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">][</span><span class="s1">'age'</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
-    <span class="n">wantFriends</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'flirtInterests_friends'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">][</span><span class="s1">'age'</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
-    <span class="n">wantDates</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'flirtInterests_date'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">][</span><span class="s1">'age'</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
-    <span class="n">nbGay</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="s1">'genderLooking'</span><span class="p">]</span> <span class="o">==</span> <span class="n">df</span><span class="p">[</span><span class="s1">'gender'</span><span class="p">])</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'genderLooking'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'both'</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-    <span class="n">kissesReceived</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'counts_details'</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-    <span class="n">visitsReceived</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'counts_details'</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-    <span class="n">totalFollowers</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'counts_fans'</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-    <span class="n">languagesSpoken</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'lang_count'</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">nbUsers</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+    <span class="n">wantChats</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;flirtInterests_chat&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">][</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+    <span class="n">wantFriends</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;flirtInterests_friends&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">][</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+    <span class="n">wantDates</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;flirtInterests_date&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">][</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+    <span class="n">nbGay</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;genderLooking&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">])</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;genderLooking&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;both&#39;</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">kissesReceived</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;counts_details&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">visitsReceived</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;counts_details&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">totalFollowers</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;counts_fans&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">languagesSpoken</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;lang_count&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
     
     <span class="c1"># Calculate the statistics</span>
     <span class="n">percentWantChats</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">wantChats</span> <span class="o">/</span> <span class="n">nbUsers</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -15537,36 +15537,36 @@ Also, we can see that age has a very little influence on the expectations of eac
     <span class="n">meanLanguagesKnown</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">languagesSpoken</span> <span class="o">/</span> <span class="n">nbUsers</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
     
     <span class="c1"># Create a dataframe with the statistics</span>
-    <span class="n">statistics</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'age'</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="s1">'age'</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                  <span class="s1">'nbUsers'</span><span class="p">:</span> <span class="n">nbUsers</span><span class="p">,</span>
-                  <span class="s1">'percentWantChats'</span><span class="p">:</span> <span class="n">percentWantChats</span><span class="p">,</span>
-                  <span class="s1">'percentWantFriends'</span><span class="p">:</span> <span class="n">percentWantFriends</span><span class="p">,</span>
-                  <span class="s1">'percentWantDates'</span><span class="p">:</span> <span class="n">percentWantDates</span><span class="p">,</span>
-                  <span class="s1">'usersLookingForSameSex'</span><span class="p">:</span> <span class="n">nbGay</span><span class="p">,</span>
-                  <span class="s1">'meanKissesReceived'</span><span class="p">:</span> <span class="n">meanKissesReceived</span><span class="p">,</span>
-                  <span class="s1">'meanVisitsReceived'</span><span class="p">:</span> <span class="n">meanVisitsReceived</span><span class="p">,</span>
-                  <span class="s1">'meanFollowers'</span><span class="p">:</span> <span class="n">meanFollowers</span><span class="p">,</span>
-                  <span class="s1">'meanLanguagesKnown'</span><span class="p">:</span> <span class="n">meanLanguagesKnown</span><span class="p">,</span>
-                  <span class="s1">'totalWantChants'</span><span class="p">:</span> <span class="n">wantChats</span><span class="p">,</span>
-                  <span class="s1">'totalWantFriends'</span><span class="p">:</span> <span class="n">wantFriends</span><span class="p">,</span>
-                  <span class="s1">'totalWantDates'</span><span class="p">:</span> <span class="n">wantDates</span><span class="p">,</span>
-                  <span class="s1">'totalKissesReceive'</span><span class="p">:</span> <span class="n">kissesReceived</span><span class="p">,</span>
-                  <span class="s1">'totalVisitsReceived'</span><span class="p">:</span> <span class="n">visitsReceived</span><span class="p">,</span>
-                  <span class="s1">'totalFollowers'</span><span class="p">:</span> <span class="n">totalFollowers</span><span class="p">,</span>
-                  <span class="s1">'totalLanguagesSpoken'</span><span class="p">:</span> <span class="n">languagesSpoken</span><span class="p">}</span>
+    <span class="n">statistics</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                  <span class="s1">&#39;nbUsers&#39;</span><span class="p">:</span> <span class="n">nbUsers</span><span class="p">,</span>
+                  <span class="s1">&#39;percentWantChats&#39;</span><span class="p">:</span> <span class="n">percentWantChats</span><span class="p">,</span>
+                  <span class="s1">&#39;percentWantFriends&#39;</span><span class="p">:</span> <span class="n">percentWantFriends</span><span class="p">,</span>
+                  <span class="s1">&#39;percentWantDates&#39;</span><span class="p">:</span> <span class="n">percentWantDates</span><span class="p">,</span>
+                  <span class="s1">&#39;usersLookingForSameSex&#39;</span><span class="p">:</span> <span class="n">nbGay</span><span class="p">,</span>
+                  <span class="s1">&#39;meanKissesReceived&#39;</span><span class="p">:</span> <span class="n">meanKissesReceived</span><span class="p">,</span>
+                  <span class="s1">&#39;meanVisitsReceived&#39;</span><span class="p">:</span> <span class="n">meanVisitsReceived</span><span class="p">,</span>
+                  <span class="s1">&#39;meanFollowers&#39;</span><span class="p">:</span> <span class="n">meanFollowers</span><span class="p">,</span>
+                  <span class="s1">&#39;meanLanguagesKnown&#39;</span><span class="p">:</span> <span class="n">meanLanguagesKnown</span><span class="p">,</span>
+                  <span class="s1">&#39;totalWantChants&#39;</span><span class="p">:</span> <span class="n">wantChats</span><span class="p">,</span>
+                  <span class="s1">&#39;totalWantFriends&#39;</span><span class="p">:</span> <span class="n">wantFriends</span><span class="p">,</span>
+                  <span class="s1">&#39;totalWantDates&#39;</span><span class="p">:</span> <span class="n">wantDates</span><span class="p">,</span>
+                  <span class="s1">&#39;totalKissesReceive&#39;</span><span class="p">:</span> <span class="n">kissesReceived</span><span class="p">,</span>
+                  <span class="s1">&#39;totalVisitsReceived&#39;</span><span class="p">:</span> <span class="n">visitsReceived</span><span class="p">,</span>
+                  <span class="s1">&#39;totalFollowers&#39;</span><span class="p">:</span> <span class="n">totalFollowers</span><span class="p">,</span>
+                  <span class="s1">&#39;totalLanguagesSpoken&#39;</span><span class="p">:</span> <span class="n">languagesSpoken</span><span class="p">}</span>
     
-    <span class="n">statistics_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">statistics</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">'index'</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">statistics_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">statistics</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
     
     <span class="k">return</span> <span class="n">statistics_df</span>
 
 <span class="c1"># Filter the dataframe based on the filtering parameter(s)</span>
 <span class="k">if</span> <span class="n">filterAge</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">lovoo_v3_users_api_results_df</span> <span class="o">=</span> <span class="n">data_train</span><span class="p">[</span><span class="n">data_train</span><span class="p">[</span><span class="s1">'age'</span><span class="p">]</span> <span class="o">==</span> <span class="n">filterAge</span><span class="p">]</span>
+    <span class="n">lovoo_v3_users_api_results_df</span> <span class="o">=</span> <span class="n">data_train</span><span class="p">[</span><span class="n">data_train</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">filterAge</span><span class="p">]</span>
 <span class="k">if</span> <span class="n">includeInterestInChats</span><span class="p">:</span>
-    <span class="n">lovoo_v3_users_api_results_df</span> <span class="o">=</span> <span class="n">data_train</span><span class="p">[</span><span class="n">data_train</span><span class="p">[</span><span class="s1">'flirtInterests_chat'</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()]</span>
+    <span class="n">lovoo_v3_users_api_results_df</span> <span class="o">=</span> <span class="n">data_train</span><span class="p">[</span><span class="n">data_train</span><span class="p">[</span><span class="s1">&#39;flirtInterests_chat&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()]</span>
 
 <span class="c1"># Group the dataframe by age and calculate the statistics for each group</span>
-<span class="n">statistics_df</span> <span class="o">=</span> <span class="n">lovoo_v3_users_api_results_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'age'</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">calculate_statistics</span><span class="p">)</span>
+<span class="n">statistics_df</span> <span class="o">=</span> <span class="n">lovoo_v3_users_api_results_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">calculate_statistics</span><span class="p">)</span>
 
 <span class="c1"># Reset the index of the resulting dataframe</span>
 <span class="n">statistics_df</span> <span class="o">=</span> <span class="n">statistics_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -15587,15 +15587,15 @@ Also, we can see that age has a very little influence on the expectations of eac
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create the bar plot</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">statistics_df</span><span class="p">[</span><span class="s1">'age'</span><span class="p">],</span> <span class="n">height</span><span class="o">=</span><span class="n">statistics_df</span><span class="p">[</span><span class="s1">'percentWantChats'</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Want Chats'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#e41a1c"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">'black'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">statistics_df</span><span class="p">[</span><span class="s1">'age'</span><span class="p">]</span><span class="o">+</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">statistics_df</span><span class="p">[</span><span class="s1">'percentWantFriends'</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Want Friends'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#377eb8"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">'black'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">statistics_df</span><span class="p">[</span><span class="s1">'age'</span><span class="p">]</span><span class="o">+</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">statistics_df</span><span class="p">[</span><span class="s1">'percentWantDates'</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Want Dates'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#4daf4a"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">'black'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">statistics_df</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">],</span> <span class="n">height</span><span class="o">=</span><span class="n">statistics_df</span><span class="p">[</span><span class="s1">&#39;percentWantChats&#39;</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Want Chats&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#e41a1c&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">statistics_df</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">+</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">statistics_df</span><span class="p">[</span><span class="s1">&#39;percentWantFriends&#39;</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Want Friends&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#377eb8&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">statistics_df</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">+</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">statistics_df</span><span class="p">[</span><span class="s1">&#39;percentWantDates&#39;</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Want Dates&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#4daf4a&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
 
 <span class="c1"># Add labels and titles</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'Age'</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'Percentage of Users'</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'Interests in Chats, Friends, and Dates by Age Group'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">statistics_df</span><span class="p">[</span><span class="s1">'age'</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Percentage of Users&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Interests in Chats, Friends, and Dates by Age Group&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">statistics_df</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -15612,9 +15612,7 @@ Also, we can see that age has a very little influence on the expectations of eac
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15671,21 +15669,21 @@ The users of the application live mainly in Central Europe. The density of users
 <span class="kn">import</span> <span class="nn">folium</span>
 
 <span class="k">def</span> <span class="nf">plot_heatmap_count</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
-    <span class="n">df_map</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'locationCity'</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'count'</span><span class="p">)</span>
+    <span class="n">df_map</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;locationCity&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
 
-    <span class="n">df_map</span><span class="p">[</span><span class="s1">'Latitude'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_map</span><span class="p">[</span><span class="s1">'locationCity'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'locationCity'</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span><span class="p">][</span><span class="s1">'Latitude'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'locationCity'</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
-    <span class="n">df_map</span><span class="p">[</span><span class="s1">'Longitude'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_map</span><span class="p">[</span><span class="s1">'locationCity'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'locationCity'</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span><span class="p">][</span><span class="s1">'Longitude'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'locationCity'</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    <span class="n">df_map</span><span class="p">[</span><span class="s1">&#39;Latitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_map</span><span class="p">[</span><span class="s1">&#39;locationCity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;locationCity&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span><span class="p">][</span><span class="s1">&#39;Latitude&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;locationCity&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    <span class="n">df_map</span><span class="p">[</span><span class="s1">&#39;Longitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_map</span><span class="p">[</span><span class="s1">&#39;locationCity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;locationCity&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span><span class="p">][</span><span class="s1">&#39;Longitude&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;locationCity&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
 
-    <span class="c1">#df['Longitude'] = df['locationCity'].apply(lambda x: df_2[df_2['City'] == x]['Longitude'])</span>
-    <span class="n">df_map</span><span class="p">[</span><span class="s2">"Coordinates"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">df_map</span><span class="o">.</span><span class="n">Longitude</span><span class="p">,</span> <span class="n">df_map</span><span class="o">.</span><span class="n">Latitude</span><span class="p">))</span>
-    <span class="n">df_map</span><span class="p">[</span><span class="s2">"Coordinates"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_map</span><span class="p">[</span><span class="s2">"Coordinates"</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">Point</span><span class="p">)</span>
+    <span class="c1">#df[&#39;Longitude&#39;] = df[&#39;locationCity&#39;].apply(lambda x: df_2[df_2[&#39;City&#39;] == x][&#39;Longitude&#39;])</span>
+    <span class="n">df_map</span><span class="p">[</span><span class="s2">&quot;Coordinates&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">df_map</span><span class="o">.</span><span class="n">Longitude</span><span class="p">,</span> <span class="n">df_map</span><span class="o">.</span><span class="n">Latitude</span><span class="p">))</span>
+    <span class="n">df_map</span><span class="p">[</span><span class="s2">&quot;Coordinates&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_map</span><span class="p">[</span><span class="s2">&quot;Coordinates&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">Point</span><span class="p">)</span>
     <span class="n">df_map</span> <span class="o">=</span> <span class="n">df_map</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
 
-    <span class="nb">map</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mi">45</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span> <span class="n">tiles</span><span class="o">=</span><span class="s2">"Cartodb dark_matter"</span><span class="p">,</span> <span class="n">zoom_start</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="nb">map</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mi">45</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span> <span class="n">tiles</span><span class="o">=</span><span class="s2">&quot;Cartodb dark_matter&quot;</span><span class="p">,</span> <span class="n">zoom_start</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 
-    <span class="n">heat_data</span> <span class="o">=</span> <span class="p">[[</span><span class="n">point</span><span class="o">.</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">point</span><span class="o">.</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span> <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">df_map</span><span class="p">[</span><span class="s1">'Coordinates'</span><span class="p">]]</span>
+    <span class="n">heat_data</span> <span class="o">=</span> <span class="p">[[</span><span class="n">point</span><span class="o">.</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">point</span><span class="o">.</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span> <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">df_map</span><span class="p">[</span><span class="s1">&#39;Coordinates&#39;</span><span class="p">]]</span>
 
-    <span class="n">plugins</span><span class="o">.</span><span class="n">HeatMap</span><span class="p">(</span><span class="n">heat_data</span><span class="p">,</span> <span class="n">min_opacity</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>  <span class="n">name</span><span class="o">=</span><span class="s1">'Heatmap'</span><span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="nb">map</span><span class="p">)</span>
+    <span class="n">plugins</span><span class="o">.</span><span class="n">HeatMap</span><span class="p">(</span><span class="n">heat_data</span><span class="p">,</span> <span class="n">min_opacity</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>  <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Heatmap&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="nb">map</span><span class="p">)</span>
 
 
     <span class="n">display</span><span class="p">(</span><span class="nb">map</span><span class="p">)</span>
@@ -15718,9 +15716,7 @@ The users of the application live mainly in Central Europe. The density of users
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15842,13 +15838,13 @@ The users of the application live mainly in Central Europe. The density of users
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">target_train</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">'black'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'#377eb8'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Histogram of the target'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Amount of likes on the users profiles'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Number of users'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">target_train</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s1">'#ff7f0e'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'mean: '</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">target_train</span><span class="o">.</span><span class="n">mean</span><span class="p">())),</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">target_train</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s1">'black'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'median: '</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">target_train</span><span class="o">.</span><span class="n">median</span><span class="p">())),</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">'best'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">target_train</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#377eb8&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Histogram of the target&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Amount of likes on the users profiles&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of users&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">target_train</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#ff7f0e&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;mean: &#39;</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">target_train</span><span class="o">.</span><span class="n">mean</span><span class="p">())),</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">target_train</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;median: &#39;</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">target_train</span><span class="o">.</span><span class="n">median</span><span class="p">())),</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">()</span>
 </pre></div>
@@ -15864,9 +15860,7 @@ The users of the application live mainly in Central Europe. The density of users
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15881,9 +15875,7 @@ class="
 </div>
 
 </div>
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15920,9 +15912,7 @@ class="
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
 
@@ -15961,10 +15951,10 @@ Or, is speaking several languages a criterion of desirability?</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"lang_count"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">target_train</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">"box"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data_train</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">"Set1"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Number of likes received regarding</span><span class="se">\n</span><span class="s2">the number of languages spoken"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Number of languages spoken"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Number of likes"</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;lang_count&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">target_train</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;box&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data_train</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Set1&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Number of likes received regarding</span><span class="se">\n</span><span class="s2">the number of languages spoken&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Number of languages spoken&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Number of likes&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
@@ -15979,9 +15969,7 @@ Or, is speaking several languages a criterion of desirability?</p>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15992,9 +15980,7 @@ Or, is speaking several languages a criterion of desirability?</p>
 </pre>
 </div>
 </div>
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16036,36 +16022,36 @@ class="
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_train_target</span> <span class="o">=</span> <span class="n">data_train</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">target_train</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="n">target_train</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 
-<span class="n">median_age</span> <span class="o">=</span> <span class="n">data_train</span><span class="p">[</span><span class="s1">'age'</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span> <span class="c1">#computation of the median age</span>
-<span class="n">conditions</span> <span class="o">=</span> <span class="p">[</span><span class="n">data_train_target</span><span class="p">[</span><span class="s1">'age'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">median_age</span><span class="p">,</span> <span class="n">data_train_target</span><span class="p">[</span><span class="s1">'age'</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">median_age</span><span class="p">]</span>
-<span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Oldest users"</span><span class="p">,</span> <span class="s2">"Youngest users"</span><span class="p">]</span>
-<span class="n">data_train_target</span><span class="p">[</span><span class="s1">'age_group'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">conditions</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+<span class="n">median_age</span> <span class="o">=</span> <span class="n">data_train</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span> <span class="c1">#computation of the median age</span>
+<span class="n">conditions</span> <span class="o">=</span> <span class="p">[</span><span class="n">data_train_target</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">median_age</span><span class="p">,</span> <span class="n">data_train_target</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">median_age</span><span class="p">]</span>
+<span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Oldest users&quot;</span><span class="p">,</span> <span class="s2">&quot;Youngest users&quot;</span><span class="p">]</span>
+<span class="n">data_train_target</span><span class="p">[</span><span class="s1">&#39;age_group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">conditions</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
 
-<span class="n">median_count_pictures</span> <span class="o">=</span> <span class="n">data_train</span><span class="p">[</span><span class="s1">'counts_pictures'</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span> <span class="c1">#computation of the median age</span>
+<span class="n">median_count_pictures</span> <span class="o">=</span> <span class="n">data_train</span><span class="p">[</span><span class="s1">&#39;counts_pictures&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span> <span class="c1">#computation of the median age</span>
 <span class="n">conditions</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">data_train_target</span><span class="p">[</span><span class="s1">'counts_pictures'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">median_count_pictures</span><span class="p">,</span>
-    <span class="n">data_train_target</span><span class="p">[</span><span class="s1">'counts_pictures'</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">median_count_pictures</span>
+    <span class="n">data_train_target</span><span class="p">[</span><span class="s1">&#39;counts_pictures&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">median_count_pictures</span><span class="p">,</span>
+    <span class="n">data_train_target</span><span class="p">[</span><span class="s1">&#39;counts_pictures&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">median_count_pictures</span>
     <span class="p">]</span>
-<span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Lot of pictures"</span><span class="p">,</span> <span class="s2">"Few pictures"</span><span class="p">]</span>
-<span class="n">data_train_target</span><span class="p">[</span><span class="s1">'counts_pictures_group'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">conditions</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+<span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Lot of pictures&quot;</span><span class="p">,</span> <span class="s2">&quot;Few pictures&quot;</span><span class="p">]</span>
+<span class="n">data_train_target</span><span class="p">[</span><span class="s1">&#39;counts_pictures_group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">conditions</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
 
-<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'description'</span><span class="p">,</span> <span class="s1">'age_group'</span><span class="p">,</span> <span class="s1">'counts_pictures_group'</span><span class="p">]</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;age_group&#39;</span><span class="p">,</span> <span class="s1">&#39;counts_pictures_group&#39;</span><span class="p">]</span>
 
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">columns</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">14</span><span class="p">))</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span>
         <span class="n">data</span><span class="o">=</span><span class="n">data_train_target</span><span class="p">,</span>
-        <span class="n">x</span><span class="o">=</span><span class="s2">"counts_kisses"</span><span class="p">,</span>
+        <span class="n">x</span><span class="o">=</span><span class="s2">&quot;counts_kisses&quot;</span><span class="p">,</span>
         <span class="n">hue</span><span class="o">=</span><span class="n">col</span><span class="p">,</span>
-        <span class="n">stat</span><span class="o">=</span><span class="s2">"density"</span><span class="p">,</span>
+        <span class="n">stat</span><span class="o">=</span><span class="s2">&quot;density&quot;</span><span class="p">,</span>
         <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-        <span class="n">palette</span><span class="o">=</span><span class="s2">"Set1"</span><span class="p">,</span>
+        <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Set1&quot;</span><span class="p">,</span>
         <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Histogram of the target</span><span class="se">\n</span><span class="s1">regarding the feature </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">col</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Amount of likes on the user profile'</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">'log'</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Density'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Histogram of the target</span><span class="se">\n</span><span class="s1">regarding the feature </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">col</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Amount of likes on the user profile&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -16079,9 +16065,7 @@ class="
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16122,18 +16106,18 @@ class="
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Define the categories for counts_pictures</span>
-<span class="n">categories</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'2-4'</span><span class="p">,</span> <span class="s1">'5-7'</span><span class="p">,</span> <span class="s1">'8-10'</span><span class="p">,</span> <span class="s1">'11-13'</span><span class="p">,</span> <span class="s1">'14-16'</span><span class="p">,</span> <span class="s1">'17-19'</span><span class="p">,</span> <span class="s1">'20-22'</span><span class="p">,</span> <span class="s1">'23-25'</span><span class="p">,</span> <span class="s1">'26-28'</span><span class="p">,</span> <span class="s1">'29-31'</span><span class="p">,</span> <span class="s1">'32-42'</span><span class="p">,</span> <span class="s1">'43+'</span><span class="p">]</span>
+<span class="n">categories</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;2-4&#39;</span><span class="p">,</span> <span class="s1">&#39;5-7&#39;</span><span class="p">,</span> <span class="s1">&#39;8-10&#39;</span><span class="p">,</span> <span class="s1">&#39;11-13&#39;</span><span class="p">,</span> <span class="s1">&#39;14-16&#39;</span><span class="p">,</span> <span class="s1">&#39;17-19&#39;</span><span class="p">,</span> <span class="s1">&#39;20-22&#39;</span><span class="p">,</span> <span class="s1">&#39;23-25&#39;</span><span class="p">,</span> <span class="s1">&#39;26-28&#39;</span><span class="p">,</span> <span class="s1">&#39;29-31&#39;</span><span class="p">,</span> <span class="s1">&#39;32-42&#39;</span><span class="p">,</span> <span class="s1">&#39;43+&#39;</span><span class="p">]</span>
 
 <span class="c1"># Create a new column with the categories of counts_pictures</span>
-<span class="n">df_plot</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">data_train</span><span class="p">[</span><span class="s1">'counts_pictures'</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="n">categories</span><span class="p">)</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
-<span class="n">df_plot</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'counts_pictures_categories'</span><span class="p">]</span>
+<span class="n">df_plot</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">data_train</span><span class="p">[</span><span class="s1">&#39;counts_pictures&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="n">categories</span><span class="p">)</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
+<span class="n">df_plot</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;counts_pictures_categories&#39;</span><span class="p">]</span>
 
 <span class="c1"># Plot the boxplot with the new column</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"counts_pictures_categories"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">target_train</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df_plot</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">"Set2"</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Number of likes received regarding</span><span class="se">\n</span><span class="s2">the number of pictures"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Number of pictures"</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Number of likes"</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;counts_pictures_categories&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">target_train</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df_plot</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Set2&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Number of likes received regarding</span><span class="se">\n</span><span class="s2">the number of pictures&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Number of pictures&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Number of likes&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 
@@ -16148,9 +16132,7 @@ class="
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16202,17 +16184,17 @@ The bar plot below clearly shows a higher number of likes for more thrustworthy 
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">target_train_verified</span> <span class="o">=</span> <span class="n">target_train</span><span class="p">[</span><span class="n">data_train</span><span class="p">[</span><span class="s1">'verified'</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">target_train_no_verified</span> <span class="o">=</span> <span class="n">target_train</span><span class="p">[</span><span class="n">data_train</span><span class="p">[</span><span class="s1">'verified'</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">target_train_verified</span> <span class="o">=</span> <span class="n">target_train</span><span class="p">[</span><span class="n">data_train</span><span class="p">[</span><span class="s1">&#39;verified&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">target_train_no_verified</span> <span class="o">=</span> <span class="n">target_train</span><span class="p">[</span><span class="n">data_train</span><span class="p">[</span><span class="s1">&#39;verified&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="n">verified_stats</span> <span class="o">=</span> <span class="p">[</span><span class="n">target_train_verified</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">target_train_verified</span><span class="o">.</span><span class="n">median</span><span class="p">()]</span>
 <span class="n">no_verified_stats</span> <span class="o">=</span> <span class="p">[</span><span class="n">target_train_no_verified</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">target_train_no_verified</span><span class="o">.</span><span class="n">median</span><span class="p">()]</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'Verified'</span><span class="p">:</span> <span class="n">verified_stats</span><span class="p">,</span> <span class="s1">'Non-verified'</span><span class="p">:</span> <span class="n">no_verified_stats</span><span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">'Mean'</span><span class="p">,</span> <span class="s1">'Median'</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Verified&#39;</span><span class="p">:</span> <span class="n">verified_stats</span><span class="p">,</span> <span class="s1">&#39;Non-verified&#39;</span><span class="p">:</span> <span class="n">no_verified_stats</span><span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Mean&#39;</span><span class="p">,</span> <span class="s1">&#39;Median&#39;</span><span class="p">])</span>
 
-<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">'bar'</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">'#e41a1c'</span><span class="p">,</span> <span class="s1">'#377eb8'</span><span class="p">],</span> <span class="n">rot</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">'black'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'Amount of likes'</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'Mean and Median of likes regarding verified status'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#e41a1c&#39;</span><span class="p">,</span> <span class="s1">&#39;#377eb8&#39;</span><span class="p">],</span> <span class="n">rot</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Amount of likes&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Mean and Median of likes regarding verified status&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
@@ -16227,9 +16209,7 @@ The bar plot below clearly shows a higher number of likes for more thrustworthy 
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16256,7 +16236,7 @@ class="
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>The economic model of these dating applications is also based on the subscription of a premium access which provides many features that "classic" users do not have. <br>
+<p>The economic model of these dating applications is also based on the subscription of a premium access which provides many features that &quot;classic&quot; users do not have. <br>
 It could then be important to consider, although the number of such people is negligible, the impact that such a subscription can have on the visibility of women on the application, their time spent on the app and thus their number of likes received.</p>
 
 </div>
@@ -16270,17 +16250,17 @@ It could then be important to consider, although the number of such people is ne
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">target_train_vip</span> <span class="o">=</span> <span class="n">target_train</span><span class="p">[</span><span class="n">data_train</span><span class="p">[</span><span class="s1">'isVip'</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">target_train_no_vip</span> <span class="o">=</span> <span class="n">target_train</span><span class="p">[</span><span class="n">data_train</span><span class="p">[</span><span class="s1">'isVip'</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">target_train_vip</span> <span class="o">=</span> <span class="n">target_train</span><span class="p">[</span><span class="n">data_train</span><span class="p">[</span><span class="s1">&#39;isVip&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">target_train_no_vip</span> <span class="o">=</span> <span class="n">target_train</span><span class="p">[</span><span class="n">data_train</span><span class="p">[</span><span class="s1">&#39;isVip&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="n">vip_stats</span> <span class="o">=</span> <span class="p">[</span><span class="n">target_train_vip</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">target_train_vip</span><span class="o">.</span><span class="n">median</span><span class="p">()]</span>
 <span class="n">no_vip_stats</span> <span class="o">=</span> <span class="p">[</span><span class="n">target_train_no_vip</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">target_train_no_vip</span><span class="o">.</span><span class="n">median</span><span class="p">()]</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'VIP'</span><span class="p">:</span> <span class="n">vip_stats</span><span class="p">,</span> <span class="s1">'Non-VIP'</span><span class="p">:</span> <span class="n">no_vip_stats</span><span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">'Mean'</span><span class="p">,</span> <span class="s1">'Median'</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;VIP&#39;</span><span class="p">:</span> <span class="n">vip_stats</span><span class="p">,</span> <span class="s1">&#39;Non-VIP&#39;</span><span class="p">:</span> <span class="n">no_vip_stats</span><span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Mean&#39;</span><span class="p">,</span> <span class="s1">&#39;Median&#39;</span><span class="p">])</span>
 
-<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">'bar'</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">'#e41a1c'</span><span class="p">,</span> <span class="s1">'#377eb8'</span><span class="p">],</span> <span class="n">rot</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">'black'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'Amount of likes'</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'Mean and Median of likes regarding premium status'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#e41a1c&#39;</span><span class="p">,</span> <span class="s1">&#39;#377eb8&#39;</span><span class="p">],</span> <span class="n">rot</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Amount of likes&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Mean and Median of likes regarding premium status&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
@@ -16295,9 +16275,7 @@ It could then be important to consider, although the number of such people is ne
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16338,8 +16316,8 @@ class="
 <p>To have a more global visualization of the interferences between the features and the target, we can also look at the correlation matrix heatmap.</p>
 <p>The correlation matrix shows us the links between the different features, and most importantly it shows us the features that are strongly correlated to our target. Thus we can see that :</p>
 <ul>
-<li>The feature "isNew" is negatively correlated to our target. The newer people are on lovoo, the less likely they are to get many likes. This is finally quite logical. </li>
-<li>The feature "counts_details" and "count_pictures" are highly correlated to the number of likes. If you want to maximize your likes, you will have to put a lot of pictures, and develop your biography.</li>
+<li>The feature &quot;isNew&quot; is negatively correlated to our target. The newer people are on lovoo, the less likely they are to get many likes. This is finally quite logical.</li>
+<li>The feature &quot;counts_details&quot; and &quot;count_pictures&quot; are highly correlated to the number of likes. If you want to maximize your likes, you will have to put a lot of pictures, and develop your biography.</li>
 <li>The country variable is also correlated with the number of likes. Indeed, if you are in a country where there are few users. Your profile will not be shown much and you will have less likes.</li>
 </ul>
 
@@ -16368,9 +16346,7 @@ class="
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[20]:</div>
 
@@ -16728,11 +16704,11 @@ class="
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#we create merge_data containing data_train and target_train </span>
-<span class="n">data_train_target_num</span> <span class="o">=</span> <span class="n">data_train_target</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">'isInfluencer'</span><span class="p">,</span> <span class="s1">'connectedToFacebook'</span><span class="p">,</span> <span class="s1">'locationCity'</span><span class="p">,</span> <span class="s2">"age_group"</span><span class="p">,</span> <span class="s1">'counts_pictures_group'</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#we drop non-numeric columns</span>
+<span class="n">data_train_target_num</span> <span class="o">=</span> <span class="n">data_train_target</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;isInfluencer&#39;</span><span class="p">,</span> <span class="s1">&#39;connectedToFacebook&#39;</span><span class="p">,</span> <span class="s1">&#39;locationCity&#39;</span><span class="p">,</span> <span class="s2">&quot;age_group&quot;</span><span class="p">,</span> <span class="s1">&#39;counts_pictures_group&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#we drop non-numeric columns</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">data_train_target_num</span><span class="o">.</span><span class="n">corr</span><span class="p">(),</span> <span class="n">annot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'viridis'</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'Correlation Matrix Heatmap'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">data_train_target_num</span><span class="o">.</span><span class="n">corr</span><span class="p">(),</span> <span class="n">annot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Correlation Matrix Heatmap&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
@@ -16747,9 +16723,7 @@ class="
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16803,20 +16777,9 @@ class="
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<hr>
+<hr />
 <p>An example <code>Estimator</code>, adding an additional feature based on the number of users by age, plus a regressor doing a Random Forest Regression:</p>
 
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="%23">#<a class="anchor-link" href="#%23">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -16849,14 +16812,14 @@ class="
 
 <span class="k">class</span> <span class="nc">FeatureExtractor</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nb_users_by_age</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"age"</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s2">"gender"</span><span class="p">:</span> <span class="s2">"count"</span><span class="p">})</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nb_users_by_age</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"age"</span><span class="p">,</span> <span class="s2">"nb_users"</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nb_users_by_age</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;age&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s2">&quot;gender&quot;</span><span class="p">:</span> <span class="s2">&quot;count&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nb_users_by_age</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="s2">&quot;nb_users&quot;</span><span class="p">]</span>
         <span class="k">return</span> <span class="bp">self</span>
 
     <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"locationCity"</span><span class="p">])</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;locationCity&quot;</span><span class="p">])</span>
 
-        <span class="k">return</span> <span class="n">X</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nb_users_by_age</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"age"</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"left"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">X</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nb_users_by_age</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">get_estimator</span><span class="p">():</span>
@@ -16865,7 +16828,7 @@ class="
 
     <span class="n">reg</span> <span class="o">=</span> <span class="n">Regressor</span><span class="p">()</span>
 
-    <span class="n">impute_missing_values</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">"mean"</span><span class="p">)</span>
+    <span class="n">impute_missing_values</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">)</span>
 
     <span class="n">pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
         <span class="n">feature_extractor</span><span class="p">,</span> <span class="n">impute_missing_values</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">reg</span>
@@ -16901,9 +16864,7 @@ class="
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[23]:</div>
 
@@ -16963,9 +16924,7 @@ class="
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[25]:</div>
 
@@ -17004,9 +16963,7 @@ class="
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[26]:</div>
 
@@ -17073,9 +17030,7 @@ class="
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[28]:</div>
 
@@ -17117,14 +17072,14 @@ class="
 <span class="k">def</span> <span class="nf">evaluation</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="n">pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
         <span class="n">FeatureExtractor</span><span class="p">(),</span>
-        <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">"mean"</span><span class="p">),</span>
+        <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">),</span>
         <span class="n">StandardScaler</span><span class="p">(),</span>
         <span class="n">Regressor</span><span class="p">())</span>
     <span class="n">results</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span>
         <span class="n">pipe</span><span class="p">,</span>
         <span class="n">X</span><span class="p">,</span>
         <span class="n">y</span><span class="p">,</span>
-        <span class="n">scoring</span><span class="o">=</span><span class="p">[</span><span class="s2">"r2"</span><span class="p">,</span> <span class="s2">"neg_mean_absolute_error"</span><span class="p">],</span>
+        <span class="n">scoring</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;r2&quot;</span><span class="p">,</span> <span class="s2">&quot;neg_mean_absolute_error&quot;</span><span class="p">],</span>
         <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
         <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -17161,9 +17116,7 @@ class="
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -17188,13 +17141,13 @@ class="
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span>
-    <span class="s2">"Training score R2: </span><span class="si">{:.3f}</span><span class="s2"> +- </span><span class="si">{:.3f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-        <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s2">"train_r2"</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s2">"train_r2"</span><span class="p">])</span>
+    <span class="s2">&quot;Training score R2: </span><span class="si">{:.3f}</span><span class="s2"> +- </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s2">&quot;train_r2&quot;</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s2">&quot;train_r2&quot;</span><span class="p">])</span>
     <span class="p">)</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span>
-    <span class="s2">"Testing score R2: </span><span class="si">{:.3f}</span><span class="s2"> +- </span><span class="si">{:.3f}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-        <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s2">"test_r2"</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s2">"test_r2"</span><span class="p">])</span>
+    <span class="s2">&quot;Testing score R2: </span><span class="si">{:.3f}</span><span class="s2"> +- </span><span class="si">{:.3f}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s2">&quot;test_r2&quot;</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s2">&quot;test_r2&quot;</span><span class="p">])</span>
     <span class="p">)</span>
 <span class="p">)</span>
 </pre></div>
@@ -17210,9 +17163,7 @@ class="
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
