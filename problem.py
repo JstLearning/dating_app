@@ -26,6 +26,10 @@ def _read_data(path):
     df = pd.merge(df, df4, left_on="locationCity", right_on="City", how="left")
 
     df.index = df["userId"]
+
+    df.loc[(df['locationCity'].isna()),'Latitude'] = None
+    df.loc[(df['locationCity'].isna()),'Longitude'] = None
+
     # Drop unuseful columns
     df = df.drop(
         [
